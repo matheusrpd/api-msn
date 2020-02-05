@@ -2,6 +2,7 @@ import { parseISO } from 'date-fns';
 
 import Message from '../models/Message';
 import User from '../models/User';
+import Notification from '../models/Notification';
 
 class MessageController {
   async index(req, res) {
@@ -47,6 +48,15 @@ class MessageController {
       text,
       date: parsedDate,
       sender_id: req.userId,
+      receiver_id: receiver.id,
+    });
+
+    /**
+     * Criando notificação para o receiver
+     */
+    await Notification.create({
+      title: 'Nova mensagem recebida',
+      content: text,
       receiver_id: receiver.id,
     });
 

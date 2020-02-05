@@ -16,7 +16,8 @@ routes.use(authMiddleware);
 
 routes.get('/users', UserController.index);
 routes.put('/users', UserController.update);
-routes.post('/messages', MessageController.store);
+
 routes.get('/messages', MessageController.index);
+routes.post('/messages', MessageController.store);
 
 export default routes;

@@ -3,8 +3,9 @@ import databaseConfig from '../config/database';
 
 import User from '../app/models/User';
 import Message from '../app/models/Message';
+import Notification from '../app/models/Notification';
 
-const models = [User, Message];
+const models = [User, Message, Notification];
 
 class Database {
   constructor() {
