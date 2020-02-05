@@ -1,5 +1,6 @@
 import Sequelize, { Model } from 'sequelize';
 import axios from 'axios';
+import User from './User';
 
 class Notification extends Model {
   static init(sequelize) {
@@ -14,6 +15,7 @@ class Notification extends Model {
     );
 
     this.addHook('afterCreate', async notification => {
+      const receiver = await User.findByPk(notification.receiver_id);
       const { title, content: body } = notification;
 
       const contentNotification = {
@@ -23,7 +25,7 @@ class Notification extends Model {
           click_action: 'http://localhost:3000/',
           icon: '',
         },
-        to: '',
+        to: receiver.id,
       };
 
       const reqConfig = {
