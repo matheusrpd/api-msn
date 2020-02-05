@@ -13,4 +13,6 @@ routes.post('/sessions', SessionController.store);
 // Middleware para verificar se usuário está logado
 routes.use(authMiddleware);
 
+routes.put('/users', UserController.update);
+
 export default routes;
