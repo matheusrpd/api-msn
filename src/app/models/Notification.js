@@ -1,6 +1,5 @@
 import Sequelize, { Model } from 'sequelize';
-import axios from 'axios';
-import User from './User';
+import sendNotification from '../utils/sendNotification';
 
 class Notification extends Model {
   static init(sequelize) {
@@ -15,31 +14,7 @@ class Notification extends Model {
     );
 
     this.addHook('afterCreate', async notification => {
-      const receiver = await User.findByPk(notification.receiver_id);
-      const { title, content: body } = notification;
-
-      const contentNotification = {
-        notification: {
-          title,
-          body,
-          click_action: 'http://localhost:3000/',
-          icon: '',
-        },
-        to: receiver.id,
-      };
-
-      const reqConfig = {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: process.env.KEY_SERVER_FIREBASE,
-        },
-      };
-
-      await axios.post(
-        'https://fcm.googleapis.com/fcm/send',
-        contentNotification,
-        reqConfig
-      );
+      sendNotification(notification);
     });
 
     return this;
