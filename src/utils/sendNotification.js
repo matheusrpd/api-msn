@@ -1,5 +1,5 @@
 import api from 'axios';
-import User from '../models/User';
+import User from '../app/models/User';
 
 const sendNotification = async notification => {
   const receiver = await User.findByPk(notification.receiver_id);

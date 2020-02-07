@@ -1,5 +1,5 @@
 import Sequelize, { Model } from 'sequelize';
-import sendNotification from '../utils/sendNotification';
+import sendNotification from '../../utils/sendNotification';
 
 class Notification extends Model {
   static init(sequelize) {
