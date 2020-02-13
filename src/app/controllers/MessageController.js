@@ -9,7 +9,7 @@ class MessageController {
     const messages = await Message.findAll({
       where: { receiver_id: req.userId },
       attributes: ['id', 'text', 'date'],
-      order: ['date'],
+      order: [['date', 'DESC']],
       include: [
         {
           model: User,
