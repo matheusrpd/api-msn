@@ -1,1 +1,1 @@
-web: yarn & yarn build & yarn start & node_modules/.bin/sequelize db:migrate
+web: yarn build & yarn start & node_modules/.bin/sequelize db:migrate
