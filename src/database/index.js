@@ -14,7 +14,10 @@ class Database {
 
   init() {
     if (process.env.ENVIRONMENT === 'production') {
-      this.connection = new Sequelize(databaseConfig.production);
+      this.connection = new Sequelize(
+        databaseConfig.production.url,
+        databaseConfig.production.config
+      );
     } else {
       this.connection = new Sequelize(databaseConfig.development);
     }
