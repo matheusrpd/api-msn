@@ -10,7 +10,7 @@ const sendNotification = async notification => {
     notification: {
       title,
       body,
-      click_action: 'http://localhost:3000/',
+      click_action: process.env.URL_FRONT_END,
     },
     to: receiver.token_notification,
   };
