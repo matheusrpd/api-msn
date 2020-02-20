@@ -10,7 +10,7 @@ const sendNotification = async notification => {
     notification: {
       title,
       body,
-      click_action: process.env.URL_FRONT_END,
+      click_action: 'https://frontend-msn.herokuapp.com',
     },
     to: receiver.token_notification,
   };
